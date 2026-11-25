@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Wrapped in Thought — a gift ideas finder for Gen Z. Find personal DIY and digital gifts for friends, family, and that one person who has everything." />
+  <title>Wrapped in Thought — gifts that actually say something</title>
+
+  <!-- Google Fonts: Fraunces (inky serif headings), DM Sans (easy body text), Special Elite (typewriter labels). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Special+Elite&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Soft ink washes in the background. Pure CSS, no images needed. -->
+  <div class="bg-blob blob-maroon" aria-hidden="true"></div>
+  <div class="bg-blob blob-rose" aria-hidden="true"></div>
+  <div class="bg-blob blob-sage" aria-hidden="true"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header">
+    <nav class="nav-pill" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Wrapped in Thought home">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <span>wrapped<span class="brand-in">in</span>thought</span>
+      </a>
+      <div class="nav-links">
+        <a href="#finder">Find a gift</a>
+        <a href="#diy">DIY</a>
+        <a href="#digital">Digital</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top">
+      <div class="hero-panel">
+        <!-- Floating sparkles and a foil seal for the printed-paper feel. -->
+        <span class="hero-star star-1" aria-hidden="true">✦</span>
+        <span class="hero-star star-2" aria-hidden="true">✧</span>
+        <span class="hero-star star-3" aria-hidden="true">✦</span>
+        <span class="hero-star star-4" aria-hidden="true">✳</span>
+        <span class="hero-ring ring-1" aria-hidden="true"></span>
+        <span class="hero-ring ring-2" aria-hidden="true"></span>
+        <span class="foil-seal" aria-hidden="true"></span>
+        <span class="hero-sticker" aria-hidden="true">new ✦ drop</span>
+
+        <div class="hero-content">
+          <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> gift ideas, but make them personal</p>
+          <h1 class="chrome-title">Wrapped<br /><span class="title-in">in</span> Thought</h1>
+          <p class="hero-tagline">Gifts that <strong>actually say something.</strong><br />Find the one for them in a few taps.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#finder">Start finding a gift <span aria-hidden="true">→</span></a>
+            <button class="btn btn-ghost" type="button" id="hero-surprise">✧ Surprise me</button>
+          </div>
+          <p class="hero-meta"><span>12 hand-picked ideas</span><span class="meta-sep">•</span><span>DIY + digital</span><span class="meta-sep">•</span><span>zero boring stuff</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GIFT FINDER ============ -->
+    <section class="section" id="finder">
+      <div class="section-head">
+        <p class="kicker">// the finder</p>
+        <h2>Pick a vibe, we'll do the thinking<span class="dot-accent">.</span></h2>
+        <p class="section-sub">Mix and match the filters, or just search for something specific.</p>
+      </div>
+
+      <div class="finder-panel glass">
+        <div class="search-row">
+          <label class="search-box" for="search-input">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.5 16.5 4 4"></path></svg>
+            <input id="search-input" type="search" placeholder="Try “bracelet”, “playlist”, “travel”…" autocomplete="off" />
+          </label>
+          <button class="btn btn-accent btn-small" type="button" id="surprise-btn">✧ Surprise me</button>
+        </div>
+
+        <!-- The pill buttons inside these rows are created by script.js from the data. -->
+        <div class="filters" id="filters">
+          <div class="filter-group">
+            <h3>Who is it for?</h3>
+            <div class="pill-row" id="filter-who"></div>
+            <p class="filter-hint" id="hint-who" aria-live="polite">Pick one — or leave it for everyone.</p>
+          </div>
+          <div class="filter-group">
+            <h3>Age group</h3>
+            <div class="pill-row" id="filter-ageGroup"></div>
+            <p class="filter-hint" id="hint-ageGroup" aria-live="polite">Pick one — or leave it for every age.</p>
+          </div>
+          <div class="filter-group">
+            <h3>Interests</h3>
+            <div class="pill-row" id="filter-interests"></div>
+            <p class="filter-hint" id="hint-interests" aria-live="polite">Pick what they're into.</p>
+          </div>
+          <div class="filter-group">
+            <h3>Type</h3>
+            <div class="pill-row" id="filter-type"></div>
+            <p class="filter-hint" id="hint-type" aria-live="polite">Handmade or screen-made?</p>
+          </div>
+        </div>
+
+        <div class="finder-foot">
+          <p class="result-count" id="result-count" aria-live="polite">Showing all ideas</p>
+          <button class="reset-btn" type="button" id="reset-filters">↺ Reset filters</button>
+        </div>
+      </div>
+
+      <!-- Cards are created by script.js and dropped in here. -->
+      <div class="card-grid" id="ideas-grid"></div>
+
+      <div class="empty-state glass" id="empty-state" hidden>
+        <span class="empty-star" aria-hidden="true">✳</span>
+        <h3>No matches yet — but don't give up!</h3>
+        <p>Try removing a filter or searching for something else. There's a good match in here somewhere.</p>
+        <button class="btn btn-primary btn-small" type="button" id="empty-reset">Reset filters</button>
+      </div>
+    </section>
+
+    <!-- ============ DIY SHOWCASE ============ -->
+    <section class="section showcase" id="diy">
+      <div class="section-head split">
+        <div>
+          <p class="kicker">// hands-on</p>
+          <h2>DIY gifts <span class="h2-accent">with heart</span></h2>
+          <p class="section-sub">A little mess, a lot of meaning. Each idea opens with materials and steps.</p>
+        </div>
+        <button class="btn btn-outline" type="button" data-see-type="DIY">See all DIY ideas <span aria-hidden="true">→</span></button>
+      </div>
+      <div class="card-grid" id="diy-grid"></div>
+    </section>
+
+    <!-- ============ DIGITAL SHOWCASE ============ -->
+    <section class="section showcase showcase-gold" id="digital">
+      <div class="section-head split">
+        <div>
+          <p class="kicker">// screen magic</p>
+          <h2>Digital gifts <span class="h2-accent-gold">with feeling</span></h2>
+          <p class="section-sub">No wrapping paper needed. Make something they can replay forever.</p>
+        </div>
+        <button class="btn btn-outline" type="button" data-see-type="Digital">See all digital ideas <span aria-hidden="true">→</span></button>
+      </div>
+      <div class="card-grid" id="digital-grid"></div>
+    </section>
+
+    <!-- ============ MAKERS CORNER ============ -->
+    <section class="section showcase" id="makers">
+      <div class="section-head split">
+        <div>
+          <p class="kicker">// the makers</p>
+          <h2>Meet the makers <span class="h2-accent">behind the magic</span></h2>
+          <p class="section-sub">Crochet, clay, cards and other handmade things — made by actual humans.</p>
+        </div>
+        <span class="maker-note-sticker" aria-hidden="true">no checkout ✦ just say hi</span>
+      </div>
+      <p class="maker-note">Orders are arranged directly with each maker. This site doesn't take payment or handle checkout.</p>
+      <!-- Maker cards are created by script.js from the makers array. -->
+      <div class="card-grid maker-grid" id="makers-grid"></div>
+    </section>
+
+    <!-- ============ SUBSCRIBE ============ -->
+    <section class="section subscribe-section" id="subscribe">
+      <div class="subscribe-panel glass">
+        <div class="subscribe-copy">
+          <p class="kicker">// the club</p>
+          <h2>Join the Wrapped in Thought club</h2>
+          <p>New gift ideas, first dibs on maker drops, and the occasional very good playlist. No spam — just good gifts.</p>
+          <p class="subscribe-perk">✦ Subscribers get new gift ideas first.</p>
+        </div>
+        <!-- Swap YOUR_FORM_URL_HERE for your real form service link later. -->
+        <form class="subscribe-form" id="subscribe-form" action="YOUR_FORM_URL_HERE" method="POST">
+          <label class="sr-only" for="subscribe-email">Email address</label>
+          <input id="subscribe-email" name="email" type="email" placeholder="you@email.com" required autocomplete="email" />
+          <button class="btn btn-primary" type="submit">Subscribe <span aria-hidden="true">→</span></button>
+          <p class="subscribe-thanks" id="subscribe-thanks" role="status" hidden>✦ You're in! Watch your inbox for the next drop.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">✦</span>
+        <h2>Wrapped in Thought</h2>
+        <p>Gifts that actually say something.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="#finder">Find a gift</a>
+        <a href="#diy">DIY ideas</a>
+        <a href="#digital">Digital ideas</a>
+        <a href="#makers">Makers</a>
+        <a href="#subscribe">The club</a>
+      </nav>
+    </div>
+    <p class="fine-print">Made for people who overthink gifts (in a good way). Cartoon character illustrations from DiceBear — swap in your own anytime. Any tutorial videos belong to their creators; this site only embeds them.</p>
+    <p class="footer-signoff">end of page ✦ go make someone's day</p>
+  </footer>
+
+  <!-- ============ DETAIL VIEW (opens when you click a card) ============ -->
+  <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title">
+    <button class="dialog-close" type="button" id="dialog-close" aria-label="Close details">×</button>
+    <div class="detail-media">
+      <img id="detail-image" src="" alt="" />
+      <span class="type-sticker sticker-diy" id="detail-type">DIY</span>
+    </div>
+    <div class="detail-body">
+      <p class="kicker" id="detail-kicker">// the idea</p>
+      <h2 id="detail-title"></h2>
+      <p class="detail-description" id="detail-description"></p>
+      <p class="relatable-note" id="detail-relatable"></p>
+      <div class="card-tags" id="detail-tags"></div>
+
+      <div class="detail-columns">
+        <section class="detail-block">
+          <h3><span aria-hidden="true">✦</span> What you'll need</h3>
+          <ul id="detail-materials"></ul>
+        </section>
+        <section class="detail-block">
+          <h3><span aria-hidden="true">✧</span> How to make it</h3>
+          <ol id="detail-steps"></ol>
+        </section>
+      </div>
+
+      <section class="detail-block video-block">
+        <h3><span aria-hidden="true">▶</span> Watch it</h3>
+        <div class="video-spot" id="detail-video"></div>
+        <p class="video-note" id="video-note">Video spot is ready — add a YouTube link in script.js to fill it.</p>
+      </section>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
